@@ -111,40 +111,23 @@ AWS_HEADERS = {
     'Cache-Control': bytes(control, encoding='latin-1')
 }
 
-# URL that handles the media served from MEDIA_ROOT, used for managing
-# stored files.
-{% if cookiecutter.use_whitenoise == 'y' -%}
-MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-{% else %}
-#  See:http://stackoverflow.com/questions/10390244/
-from storages.backends.s3boto import S3BotoStorage
-StaticRootS3BotoStorage = lambda: S3BotoStorage(location='static')
-MediaRootS3BotoStorage = lambda: S3BotoStorage(location='media')
-DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
-
-MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
-{%- endif %}
+#  See: http://stackoverflow.com/questions/10390244/
+DEFAULT_FILE_STORAGE = 'config.settings.s3utils.MediaRootS3BotoStorage'
+MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 
 # Static Assets
 # ------------------------
-{% if cookiecutter.use_whitenoise == 'y' -%}
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-{% else %}
-STATIC_URL = 'https://s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
-STATICFILES_STORAGE = 'config.settings.production.StaticRootS3BotoStorage'
+STATICFILES_STORAGE = 'config.settings.s3utils.StaticRootS3BotoStorage'
+STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+
+
 # See: https://github.com/antonagestam/collectfast
 # For Django 1.7+, 'collectfast' should come before
 # 'django.contrib.staticfiles'
 AWS_PRELOAD_METADATA = True
-INSTALLED_APPS = ['collectfast', ] + INSTALLED_APPS
-{%- endif %}
-{% if cookiecutter.use_compressor == 'y'-%}
-# COMPRESSOR
-# ------------------------------------------------------------------------------
-COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-COMPRESS_URL = STATIC_URL
-COMPRESS_ENABLED = env.bool('COMPRESS_ENABLED', default=True)
-{%- endif %}
+INSTALLED_APPS = ('collectfast', ) + INSTALLED_APPS
+
+
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
@@ -171,35 +154,13 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
-{% if cookiecutter.use_elasticbeanstalk_experimental.lower() == 'y' -%}
-# Uses Amazon RDS for database hosting, which doesn't follow the Heroku-style spec
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('RDS_DB_NAME'),
-        'USER': env('RDS_USERNAME'),
-        'PASSWORD': env('RDS_PASSWORD'),
-        'HOST': env('RDS_HOSTNAME'),
-        'PORT': env('RDS_PORT'),
-    }
-}
-{% else %}
 # Use the Heroku-style specification
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 DATABASES['default'] = env.db('DATABASE_URL')
-{%- endif %}
 
 # CACHING
 # ------------------------------------------------------------------------------
-{% if cookiecutter.use_elasticbeanstalk_experimental.lower() == 'y' -%}
-REDIS_LOCATION = 'redis://{}:{}/0'.format(
-    env('REDIS_ENDPOINT_ADDRESS'),
-    env('REDIS_PORT')
-)
-{% else %}
 REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0)
-{%- endif %}
-# Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',

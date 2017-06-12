@@ -8,11 +8,8 @@
     "version": "0.1.0",
     "timezone": "UTC",
     "use_sentry_for_error_reporting": "y",
-    "use_docker": "y",
+    "use_djangoq": "y",
     "use_heroku": "n",
     "postgresql_version": ["9.6", "9.5", "9.4", "9.3", "9.2"],
-    "js_task_runner": ["Webpack", "None"],
-    "use_lets_encrypt": "n",
-    "custom_bootstrap_compilation": "n",
     "open_source_license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"]
 }

@@ -50,8 +50,8 @@ Optional Integrations
 
 * Serve static files from Amazon S3
 * Configuration for DjangoQ_
-* Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
+* Configuration for Webpack_ for client side asset bundling (sass, js, etc.)
 
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _django-allauth: https://github.com/pennersr/django-allauth
@@ -60,6 +60,7 @@ Optional Integrations
 .. _Anymail: https://github.com/anymail/django-anymail
 .. _MailHog: https://github.com/mailhog/MailHog
 .. _Sentry: https://sentry.io/welcome/
+.. _Webpack: https://webpack.js.org
 .. _docker-compose: https://github.com/docker/compose
 
 
