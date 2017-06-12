@@ -293,7 +293,7 @@ LOGIN_REDIRECT_URL = 'users:redirect'
 LOGIN_URL = 'account_login'
 
 
-{% if cookiecutter.use_celery == 'y' %}
+{% if cookiecutter.use_djangoq == 'y' %}
 ########## Django Q Cluster
 Q_CLUSTER = {
     'name': '{{ cookiecutter.project_slug }}',

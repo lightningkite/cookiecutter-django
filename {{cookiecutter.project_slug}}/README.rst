@@ -55,23 +55,6 @@ Moved to `Live reloading and SASS compilation`_.
 
 .. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
 
-{% if cookiecutter.use_celery == "y" %}
-
-Celery
-^^^^^^
-
-This app comes with Celery.
-
-To run a celery worker:
-
-.. code-block:: bash
-
-    cd {{cookiecutter.project_slug}}
-    celery -A {{cookiecutter.project_slug}}.taskapp worker -l info
-
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
-
-{% endif %}
 
 {% if cookiecutter.use_sentry_for_error_reporting == "y" %}
 
