@@ -303,13 +303,6 @@ Q_CLUSTER = {
 ########## END Django Q Cluster
 {% endif %}
 
-{%- if cookiecutter.use_compressor == 'y'-%}
-# django-compressor
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ['compressor']
-STATICFILES_FINDERS += ['compressor.finders.CompressorFinder']
-{%- endif %}
-
 # Location of root django.contrib.admin URL, use {% raw %}{% url 'admin:index' %}{% endraw %}
 ADMIN_URL = r'^admin/'
 
