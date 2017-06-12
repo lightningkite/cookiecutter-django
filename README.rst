@@ -28,26 +28,19 @@ Powered by Cookiecutter_, Cookiecutter Django is a framework for jumpstarting pr
 Features
 ---------
 
-* For Django 1.10
+* For latest version of Django (1.11)
 * Works with Python 3.4.x or 3.5.x. Python 3.6 is experimental
 * Renders Django projects with 100% starting test coverage
-* Twitter Bootstrap_ v4.0.0 - alpha 6 (`maintained Foundation fork`_ also available)
-* 12-Factor_ based settings via django-environ_
 * Secure by default. We believe in SSL.
 * Optimized development and production settings
 * Registration via django-allauth_
 * Comes with custom user model ready to go
-* Grunt build for compass and livereload
+* Webpack bundling for client javascript and sass
 * Send emails via Anymail_ (using Mailgun_ by default, but switchable)
 * Media storage using Amazon S3
 * Docker support using docker-compose_ for development and production
-* Procfile_ for deploying to Heroku
-* Instructions for deploying to PythonAnywhere_
 * Run tests with unittest or py.test
 * Customizable PostgreSQL version
-* Experimental support for Amazon Elastic Beanstalk
-
-.. _`maintained Foundation fork`: https://github.com/Parbhat/cookiecutter-django-foundation
 
 
 Optional Integrations
@@ -55,27 +48,19 @@ Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
-* Serve static files from Amazon S3 or Whitenoise_
-* Configuration for Celery_
+* Serve static files from Amazon S3
+* Configuration for DjangoQ_
 * Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
-* Integration with Opbeat_ for performance monitoring
 
-.. _Bootstrap: https://github.com/twbs/bootstrap
 .. _django-environ: https://github.com/joke2k/django-environ
-.. _12-Factor: http://12factor.net/
 .. _django-allauth: https://github.com/pennersr/django-allauth
-.. _django-avatar: https://github.com/grantmcconnaughey/django-avatar
-.. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Mailgun: http://www.mailgun.com/
 .. _Whitenoise: https://whitenoise.readthedocs.io/
-.. _Celery: http://www.celeryproject.org/
 .. _Anymail: https://github.com/anymail/django-anymail
 .. _MailHog: https://github.com/mailhog/MailHog
 .. _Sentry: https://sentry.io/welcome/
 .. _docker-compose: https://github.com/docker/compose
-.. _Opbeat: https://opbeat.com/
-.. _PythonAnywhere: https://www.pythonanywhere.com/
 
 
 Constraints
@@ -128,7 +113,7 @@ First, get Cookiecutter. Trust me, it's awesome::
 
 Now run it against this repo::
 
-    $ cookiecutter https://github.com/pydanny/cookiecutter-django
+    $ cookiecutter https://github.com/lightningkite/cookiecutter-django
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
 
@@ -232,61 +217,3 @@ If you are using `pyup.io`_ to keep your dependencies updated and secure, use th
 -------------
 
 Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
-
-Releases
---------
-
-Need a stable release? You can find them at https://github.com/pydanny/cookiecutter-django/releases
-
-
-Not Exactly What You Want?
----------------------------
-
-This is what I want. *It might not be what you want.* Don't worry, you have options:
-
-Fork This
-~~~~~~~~~~
-
-If you have differences in your preferred setup, I encourage you to fork this to create your own version.
-Once you have your fork working, let me know and I'll add it to a '*Similar Cookiecutter Templates*' list here.
-It's up to you whether or not to rename your fork.
-
-If you do rename your fork, I encourage you to submit it to the following places:
-
-* cookiecutter_ so it gets listed in the README as a template.
-* The cookiecutter grid_ on Django Packages.
-
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
-
-Submit a Pull Request
-~~~~~~~~~~~~~~~~~~~~~~
-
-We accept pull requests if they're small, atomic, and make our own project development
-experience better.
-
-Articles
----------
-
-* `Development and Deployment of Cookiecutter-Django on Fedora`_ - Jan. 18, 2016
-* `Development and Deployment of Cookiecutter-Django via Docker`_ - Dec. 29, 2015
-* `How to create a Django Application using Cookiecutter and Django 1.8`_ - Sept. 12, 2015
-* `Introduction to Cookiecutter-Django`_ - Feb. 19, 2016
-* `Django and GitLab - Running Continuous Integration and tests with your FREE account`_ - May. 11, 2016
-
-Have a blog or online publication? Write about your cookiecutter-django tips and tricks, then send us a pull request with the link.
-
-.. _`Development and Deployment of Cookiecutter-Django via Docker`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/
-.. _`Development and Deployment of Cookiecutter-Django on Fedora`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-on-fedora/
-.. _`How to create a Django Application using Cookiecutter and Django 1.8`: https://www.swapps.io/blog/how-to-create-a-django-application-using-cookiecutter-and-django-1-8/
-.. _`Introduction to Cookiecutter-Django`: http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html
-.. _`Django and GitLab - Running Continuous Integration and tests with your FREE account`: http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html
-
-Code of Conduct
----------------
-
-Everyone interacting in the Cookiecutter project's codebases, issue trackers, chat
-rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
-
-
-.. _`PyPA Code of Conduct`: https://www.pypa.io/en/latest/code-of-conduct/
