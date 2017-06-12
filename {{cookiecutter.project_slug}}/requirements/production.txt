@@ -31,9 +31,3 @@ django-anymail==0.10
 # --------------------------
 raven==6.1.0
 {%- endif %}
-
-{% if cookiecutter.use_opbeat == "y" -%}
-# Opbeat agent for performance monitoring
-# -----------------------------------------
-opbeat==3.5.2
-{%- endif %}
