@@ -60,10 +60,6 @@ node_modules/
 # User-uploaded media
 {{ cookiecutter.project_slug }}/media/
 
-{% if cookiecutter.use_mailhog == 'y' and cookiecutter.use_docker == 'n' %}
-# MailHog binary
-mailhog
-{% endif %}
 
 staticfiles/
 
