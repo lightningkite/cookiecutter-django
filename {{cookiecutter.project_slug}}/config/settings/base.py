@@ -50,6 +50,16 @@ THIRD_PARTY_APPS = [
     {% if cookiecutter.use_djangoq == 'y' %}
     'django_q',
     {% endif %}
+    {% if cookiecutter.use_drf == 'y' %}
+    'rest_framework',
+    {% endif %}
+    {% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
+    'rest_framework.authtoken',
+    'rest_auth',
+    {% endif %}
+    {% if cookiecutter.use_graphql == 'y' %}
+    'graphene_django',
+    {% endif %}
 ]
 
 # Apps specific for this project go here.
@@ -174,8 +184,6 @@ TEMPLATES = [
     },
 ]
 
-# See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -187,7 +195,7 @@ STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
+    str(ROOT_DIR.path('static')),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -199,7 +207,7 @@ STATICFILES_FINDERS = [
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR('media'))
+MEDIA_ROOT = str(ROOT_DIR('media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
@@ -248,8 +256,29 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
+{% if cookiecutter.use_drf == 'y' %}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+{% endif %}
+
+{% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf == 'y' %}
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'ftl.core.serializers.RegisterSerializer',
+}
+{% endif %}
+
+
+
 # Some really nice defaults
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
