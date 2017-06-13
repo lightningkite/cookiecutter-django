@@ -13,6 +13,21 @@ from .base import *  # noqa
 DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = False
 
+# DATABASES
+# ------------------------------------------------------------------------------
+# Use testing database
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'circleci_test',
+        'USER': 'ubuntu',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
+
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
