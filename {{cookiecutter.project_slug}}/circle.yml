@@ -1,0 +1,22 @@
+machine:
+  timezone:
+    America/Denver
+
+  python:
+    version:
+      3.5.3
+
+  environment:
+    DJANGO_SETTINGS_MODULE: config.settings.test
+
+dependencies:
+  pre:
+    - pip install -r requirements/test.txt
+
+database:
+  override:
+    - createdb circleci_test
+
+test:
+  override:
+    - pytest
