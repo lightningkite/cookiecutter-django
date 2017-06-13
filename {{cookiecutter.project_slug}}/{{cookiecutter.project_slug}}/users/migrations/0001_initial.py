@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.utils.timezone
-import test_cookiecutter.users.models
+import {{ cookiecutter.project_slug }}.users.models
 
 
 class Migration(migrations.Migration):
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'user',
             },
             managers=[
-                ('objects', test_cookiecutter.users.models.UserManager()),
+                ('objects', {{ cookiecutter.project_slug }}.users.models.UserManager()),
             ],
         ),
     ]
