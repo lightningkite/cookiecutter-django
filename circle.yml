@@ -9,6 +9,8 @@ machine:
 dependencies:
   pre:
     - pip install -r requirements.txt
+    - pip install -r {{cookiecutter.project_slug}}/requirements/local.txt
+    - pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
 
 test:
   override:
