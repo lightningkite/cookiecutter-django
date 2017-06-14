@@ -13,3 +13,6 @@ dependencies:
 test:
   override:
     - pytest
+    - rm -rf project_name
+    - yes "" | cookiecutter .
+    - python project_name/manage.py test
