@@ -6,7 +6,7 @@ wheel==0.29.0
 
 
 # Bleeding edge Django
-django==1.11
+django==1.11.2
 
 # Configuration
 django-environ==0.4.3
@@ -40,7 +40,7 @@ django-q==0.8.0
 djangorestframework==3.6.3
 # {% endif %}
 # {% if cookiecutter.use_drf_registration == "y" and cookiecutter.use_drf == 'y'%}
-django-rest-auth==0.7.0
+django-rest-auth==0.9.1
 # {% endif %}
 # {% if cookiecutter.use_graphql == 'y' %}
 # Graph QL
