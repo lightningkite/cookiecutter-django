@@ -89,7 +89,7 @@ AWS_EXPIRY = 60 * 60 * 24 * 7
 # either django-storage-redux or boto
 control = 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIRY, AWS_EXPIRY)
 AWS_HEADERS = {
-    'Cache-Control': bytes(control, encoding='latin-1')
+    'Cache-Control': bytes(control).encode('latin-1')
 }
 
 #  See: http://stackoverflow.com/questions/10390244/
