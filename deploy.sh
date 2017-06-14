@@ -3,4 +3,4 @@ rm -rf project_name && \
 	cd project_name && \
 	# pip install -r requirements/production.txt && \
 	python manage.py migrate && \
-	gunicorn config.wsgi:application
+	gunicorn wsgi
