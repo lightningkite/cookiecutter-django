@@ -17,8 +17,8 @@ django-storages-redux==1.3.2
 # -------------------------------------------------------
 django-anymail==0.10
 
-{% if cookiecutter.use_sentry_for_error_reporting == "y" -%}
+# {% if cookiecutter.use_sentry_for_error_reporting == "y" -%}
 # Raven is the Sentry client
 # --------------------------
 raven==6.1.0
-{%- endif %}
+# {%- endif %}
