@@ -12,7 +12,7 @@
     "use_drf": "y",
     "use_drf_registration": "y",
     "use_graphql": "y",
-    "use_heroku": "n",
+    "use_heroku": "y",
     "use_webpack": "y",
     "postgresql_version": ["9.6", "9.5", "9.4", "9.3", "9.2"],
     "open_source_license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"]
