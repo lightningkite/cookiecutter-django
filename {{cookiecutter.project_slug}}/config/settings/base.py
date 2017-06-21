@@ -263,7 +263,7 @@ REST_FRAMEWORK = {
 
 {% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf == 'y' %}
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'ftl.core.serializers.RegisterSerializer',
+    'REGISTER_SERIALIZER': '{{ cookiecutter.project_slug }}.users.serializers.RegisterSerializer',
 }
 {% endif %}
 
@@ -272,7 +272,8 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = '{{cookiecutter.project_slug}}.users.adapters.AccountAdapter'
