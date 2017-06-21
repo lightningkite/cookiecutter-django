@@ -14,7 +14,9 @@ urlpatterns = [
 
     # User management
     url(r'^users/', include('{{ cookiecutter.project_slug }}.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),{% if cookiecutter.use_drf_registration == 'y' %}
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')){% endif %}
 
     # Your stuff: custom urls includes go here
 

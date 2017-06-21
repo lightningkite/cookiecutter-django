@@ -45,21 +45,13 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'allauth',  # registration
-    'allauth.account',  # registration
-    {% if cookiecutter.use_djangoq == 'y' %}
-    'django_q',
-    {% endif %}
-    {% if cookiecutter.use_drf == 'y' %}
-    'rest_framework',
-    {% endif %}
-    {% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
+    'allauth',
+    'allauth.account', {% if cookiecutter.use_djangoq == 'y' %}
+    'django_q',{% endif %}{% if cookiecutter.use_drf == 'y' %}
+    'rest_framework',{% endif %}{% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
     'rest_framework.authtoken',
-    'rest_auth',
-    {% endif %}
-    {% if cookiecutter.use_graphql == 'y' %}
-    'graphene_django',
-    {% endif %}
+    'rest_auth',{% endif %}{% if cookiecutter.use_graphql == 'y' %}
+    'graphene_django',{% endif %}
 ]
 
 # Apps specific for this project go here.
