@@ -18,8 +18,8 @@ urlpatterns = [
     # User management
     url(r'^users/', include('{{ cookiecutter.project_slug }}.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),{% if cookiecutter.use_drf_registration == 'y' %}
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
-        url(
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(
         regex=r'^rest-auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$',
         view=confirm_email,
         name="account_confirm_email"
