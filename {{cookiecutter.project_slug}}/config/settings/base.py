@@ -45,21 +45,13 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'allauth',  # registration
-    'allauth.account',  # registration
-    {% if cookiecutter.use_djangoq == 'y' %}
-    'django_q',
-    {% endif %}
-    {% if cookiecutter.use_drf == 'y' %}
-    'rest_framework',
-    {% endif %}
-    {% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
+    'allauth',
+    'allauth.account', {% if cookiecutter.use_djangoq == 'y' %}
+    'django_q',{% endif %}{% if cookiecutter.use_drf == 'y' %}
+    'rest_framework',{% endif %}{% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
     'rest_framework.authtoken',
-    'rest_auth',
-    {% endif %}
-    {% if cookiecutter.use_graphql == 'y' %}
-    'graphene_django',
-    {% endif %}
+    'rest_auth',{% endif %}{% if cookiecutter.use_graphql == 'y' %}
+    'graphene_django',{% endif %}
 ]
 
 # Apps specific for this project go here.
@@ -271,7 +263,7 @@ REST_FRAMEWORK = {
 
 {% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf == 'y' %}
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'ftl.core.serializers.RegisterSerializer',
+    'REGISTER_SERIALIZER': '{{ cookiecutter.project_slug }}.users.serializers.RegisterSerializer',
 }
 {% endif %}
 
@@ -280,7 +272,9 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 # Some really nice defaults
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_ADAPTER = '{{cookiecutter.project_slug}}.users.adapters.AccountAdapter'

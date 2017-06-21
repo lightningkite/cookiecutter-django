@@ -4,6 +4,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+{% if cookiecutter.use_drf_registration == 'y' %}
+from allauth.account.views import confirm_email
+{% endif %}
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -14,7 +17,14 @@ urlpatterns = [
 
     # User management
     url(r'^users/', include('{{ cookiecutter.project_slug }}.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),{% if cookiecutter.use_drf_registration == 'y' %}
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(
+        regex=r'^rest-auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$',
+        view=confirm_email,
+        name="account_confirm_email"
+    ),
+    url(r'^rest-auth/', include('rest_auth.urls')),{% endif %}
 
     # Your stuff: custom urls includes go here
 
