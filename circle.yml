@@ -17,4 +17,4 @@ test:
     - pytest
     - rm -rf project_name
     - yes "" | cookiecutter .
-    - python project_name/manage.py test
+    - pytest project_name
