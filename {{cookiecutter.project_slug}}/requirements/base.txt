@@ -12,7 +12,7 @@ django==1.11.2
 django-environ==0.4.3
 
 # Images
-Pillow==4.1.1
+Pillow==4.2.1
 
 # Password storage
 argon2-cffi==16.3.0
@@ -22,7 +22,7 @@ argon2-cffi==16.3.0
 django-allauth==0.32.0
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.1
+psycopg2==2.7.3
 
 # Time zones support
 pytz==2017.2
