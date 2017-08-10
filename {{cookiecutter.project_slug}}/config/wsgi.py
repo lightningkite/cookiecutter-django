@@ -23,10 +23,10 @@ from django.core.wsgi import get_wsgi_application
 app_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
 sys.path.append(os.path.join(app_path, '{{ cookiecutter.project_slug }}'))
 
-{% if cookiecutter.use_sentry_for_error_reporting == 'y' -%}
-if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
+try:
     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
-{%- endif %}
+except ImportError:
+    Sentry = None
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
@@ -38,10 +38,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 application = get_wsgi_application()
-{% if cookiecutter.use_sentry_for_error_reporting == 'y' -%}
-if os.environ.get('DJANGO_SETTINGS_MODULE') == 'config.settings.production':
+
+if Sentry:
     application = Sentry(application)
-{%- endif %}
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
