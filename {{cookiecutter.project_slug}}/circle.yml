@@ -13,10 +13,6 @@ dependencies:
   pre:
     - pip install -r requirements/test.txt
 
-database:
-  override:
-    - createdb circleci_test
-
 test:
   override:
     - pytest
