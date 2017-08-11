@@ -1,6 +1,9 @@
 from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from django.views.generic import RedirectView
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import User
+class UserRedirectView(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self):
+        return reverse('home')
