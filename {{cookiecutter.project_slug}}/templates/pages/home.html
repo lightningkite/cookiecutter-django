@@ -1,1 +1,11 @@
-{% raw %}{% extends "base.html" %}{% endraw %}
+{% raw %}{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div id="app"></div>
+{% endblock %}
+
+{% block extra %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'build/main.bundle.js' %}"></script>
+{% endblock %}{% endraw %}

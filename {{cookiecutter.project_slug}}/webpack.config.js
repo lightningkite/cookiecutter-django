@@ -1,13 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 var BUILD_DIR = path.resolve(__dirname, 'static/build');
 var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
   entry: {
-    main: path.resolve(APP_DIR, 'js/app.js'),
+    vendor: ['react', 'react-dom', 'prop-types'],
+    css: path.resolve(APP_DIR, 'sass/css.js'),
+    main: path.resolve(APP_DIR, 'js/index.jsx'),
   },
   output: {
     path: BUILD_DIR,
@@ -49,7 +52,11 @@ var config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('main.css')
+    new ExtractTextPlugin('main.css'),
+    new CommonsChunkPlugin({
+      names: ['vendor'],
+      minChunks: 1
+    })
   ]
 };
 
