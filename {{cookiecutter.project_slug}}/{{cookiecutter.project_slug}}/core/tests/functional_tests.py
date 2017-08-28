@@ -8,7 +8,12 @@ from selenium import webdriver
 class FunctionalTests(StaticLiveServerTestCase):
 
     def setUp(self):
-        self.driver = webdriver.PhantomJS()
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
+        self.driver = webdriver.Chrome(chrome_options=options)
 
     def tearDown(self):
         self.driver.quit()

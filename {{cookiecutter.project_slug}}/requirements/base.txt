@@ -9,7 +9,7 @@ wheel==0.29.0
 django==1.11.4
 
 # Configuration
-django-environ==0.4.3
+django-environ==0.4.4
 
 # Images
 Pillow==4.2.1
@@ -19,7 +19,7 @@ argon2-cffi==16.3.0
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!
-django-allauth==0.32.0
+django-allauth==0.33.0
 
 # Python-PostgreSQL Database Adapter
 psycopg2==2.7.3
@@ -37,7 +37,7 @@ django-q==0.8.0
 # {% endif %}
 # {% if cookiecutter.use_drf == "y" %}
 # Django rest framework
-djangorestframework==3.6.3
+djangorestframework==3.6.4
 # {% endif %}
 # {% if cookiecutter.use_drf_registration == "y" and cookiecutter.use_drf == 'y'%}
 django-rest-auth==0.9.1
