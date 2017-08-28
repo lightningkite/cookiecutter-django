@@ -8,7 +8,7 @@ var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
   entry: {
-    vendor: ['react', 'react-dom'],
+    vendor: ['react', 'react-dom', 'prop-types'],
     css: path.resolve(APP_DIR, 'sass/css.js'),
     main: path.resolve(APP_DIR, 'js/index.jsx'),
   },
