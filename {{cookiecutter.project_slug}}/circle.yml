@@ -12,7 +12,7 @@ machine:
 dependencies:
   pre:
     - pip install -r requirements/test.txt
-    - npm run build
+    - npm install && npm run build
 
   override:
     - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
