@@ -5,6 +5,7 @@
     "watch": "node_modules/.bin/webpack -w",
     "start": "node_modules/.bin/webpack -w",
     "build": "node_modules/.bin/webpack --define process.env.NODE_ENV='\"production\"' --optimize-minimize",
+    "lint": "node_modules/.bin/eslint -c .eslintrc.json client/js",
     "test": "node_modules/.bin/jest --env=jsdom"
   },
   "jest": {
