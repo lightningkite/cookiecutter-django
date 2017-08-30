@@ -1,6 +1,10 @@
 machine:
   timezone:
     America/Denver
+    
+  node:
+    version:
+      7.4.0
 
   python:
     version:
