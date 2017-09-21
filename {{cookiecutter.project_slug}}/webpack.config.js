@@ -26,7 +26,7 @@ var config = {
         include: APP_DIR,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'stage-2', 'react'],
+          presets: ['env', 'stage-2', 'react'],
           plugins: ['transform-object-rest-spread']
         }
       },
