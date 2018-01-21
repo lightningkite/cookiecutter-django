@@ -40,7 +40,7 @@ django-q==0.8.1
 djangorestframework==3.7.1
 # {% endif %}
 # {% if cookiecutter.use_drf_registration == "y" and cookiecutter.use_drf == 'y'%}
-django-rest-auth==0.9.2
+django-rest-auth==0.9.3
 # {% endif %}
 # {% if cookiecutter.use_graphql == 'y' %}
 # Graph QL
