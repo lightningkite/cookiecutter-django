@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = [
     'rest_framework.authtoken',
     'rest_auth',{% endif %}{% if cookiecutter.use_graphql == 'y' %}
     'graphene_django',{% endif %}
+    'webpack_loader',
 ]
 
 # Apps specific for this project go here.
