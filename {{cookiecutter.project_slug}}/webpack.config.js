@@ -56,7 +56,17 @@ var config = {
     new CommonsChunkPlugin({
       names: ['vendor'],
       minChunks: 1
-    })
+    }),
+    new BundleTracker({filename: './webpack-stats.json'}),
+    new CleanWebpackPlugin([
+      BUILD_DIR,
+    ], {
+      exclude: ['.gitkeep'],
+      verbose: true,
+      dry: false,
+      watch: false,
+      allowExternal: false,
+    }),
   ]
 };
 
