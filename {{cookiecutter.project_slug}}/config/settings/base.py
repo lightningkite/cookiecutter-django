@@ -301,5 +301,15 @@ Q_CLUSTER = {
 # Location of root django.contrib.admin URL, use {% raw %}{% url 'admin:index' %}{% endraw %}
 ADMIN_URL = r'^admin/'
 
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'build/',  # must end with slash
+        'STATS_FILE': str(ROOT_DIR.path('webpack-stats.json')),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}
+
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
