@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+var BundleTracker = require('webpack-bundle-tracker');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var BUILD_DIR = path.resolve(__dirname, 'static/build');
 var APP_DIR = path.resolve(__dirname, 'client');
