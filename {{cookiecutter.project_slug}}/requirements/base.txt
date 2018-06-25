@@ -9,7 +9,7 @@ wheel==0.29.0
 django==1.11.5
 
 # Configuration
-django-environ==0.4.4
+django-environ==0.4.5
 
 # Images
 Pillow==4.3.0
