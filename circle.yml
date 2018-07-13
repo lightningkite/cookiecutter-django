@@ -17,5 +17,5 @@ test:
     - pytest
     - rm -rf project_name
     - yes "" | cookiecutter .
-    - cd project_name && npm run build
+    - cd project_name && npm install && npm run build
     - pytest project_name
