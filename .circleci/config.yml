@@ -4,6 +4,15 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.1
+        environment:
+        - DATABASE_URL=postgres://pathwaze:pathwaze@postgres:5432/pathwaze
+        - REDIS_URL=redis://redis:6379
+      - image: postgres
+        name: postgres
+        environment:
+        - POSTGRES_USER=pathwaze
+      - image: redis
+        name: redis
 
     working_directory: ~/cookiecutter
 
