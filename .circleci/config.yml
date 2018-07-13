@@ -1,0 +1,56 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.1
+
+    working_directory: ~/cookiecutter
+
+    steps:
+      - checkout
+
+      # Dependencies
+            #   This would typically go in either a build or a build-and-test job when using workflows
+            # Restore the dependency cache
+      - restore_cache:
+          keys:
+            # This branch if available
+            - v1-dep-{{ .Branch }}-
+            # Default branch if not
+            - v1-dep-master-
+            # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
+            - v1-dep-
+
+      - run:
+          name: install node
+          command: |
+            sudo apt-get update -y
+            sudo apt-get upgrade -y
+            curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+            sudo bash nodesource_setup.sh
+            sudo apt-get install nodejs
+            sudo apt-get install build-essential
+
+      - run:
+          name: install dependencies
+          command: |
+            pip install -r requirements.txt
+            pip install -r {{cookiecutter.project_slug}}/requirements/local.txt
+            pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
+
+          # Save dependency cache
+      - save_cache:
+          key: v1-dep-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ./node_modules
+            - /root/.cache
+
+      - run:
+          name: Run tests
+          command: |
+            pytest
+            rm -rf project_name
+            yes "" | cookiecutter .
+            cd project_name && npm install && npm run build && cd ..
+            pytest project_name
