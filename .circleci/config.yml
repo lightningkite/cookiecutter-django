@@ -30,14 +30,10 @@ jobs:
       - run:
           name: Run tests
           command: |
-            ls && ls {{cookiecutter.project_slug}}/
             pytest
-            ls && ls {{cookiecutter.project_slug}}/
             rm -rf project_name
-            ls && ls {{cookiecutter.project_slug}}/
             cd {{cookiecutter.project_slug}} && ls && rm -rf node_modules/ && cd ..
-            ls && ls {{cookiecutter.project_slug}}/
-            yes "" | cookiecutter .
-            ls && ls {{cookiecutter.project_slug}}/
+            cd ~/cookiecutter
+            yes "" | cookiecutter cookiecutter
             cd project_name && npm install && npm run build && cd ..
             pytest project_name
