@@ -43,7 +43,6 @@ jobs:
       - save_cache:
           key: v1-dep-{{ .Branch }}-{{ epoch }}
           paths:
-            - ./node_modules
             - /root/.cache
 
       - run:
