@@ -7,5 +7,5 @@
 
 {% block extra %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'build/main.bundle.js' %}"></script>
+    {% render_bundle 'main' %}
 {% endblock %}{% endraw %}

@@ -1,4 +1,5 @@
 {% raw %}{% load staticfiles %}
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{% block title %}{% endraw %}{{ cookiecutter.project_name }}{% raw %}{% endblock title %}</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'build/main.css' %}">
+  {% render_bundle 'styles' 'css' %}
   {% block head %}{% endblock %}
 </head>
 <body>
@@ -15,7 +16,7 @@
   </div>
 
   {% block extra %}
-    <script type="text/javascript" src="{% static 'build/vendor.bundle.js' %}"></script>
+    {% render_bundle 'vendor' %}
   {% endblock %}
 </body>
 </html>{% endraw %}
