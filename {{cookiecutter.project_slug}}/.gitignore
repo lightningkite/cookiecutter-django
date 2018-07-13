@@ -64,4 +64,4 @@ node_modules/
 staticfiles/
 
 .cache/
-
+webpack-stats.json

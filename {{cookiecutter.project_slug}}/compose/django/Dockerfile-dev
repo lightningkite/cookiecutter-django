@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install google chrome
 RUN apt-get -y update
-RUN apt-get install -yqq unzip libxss1 libappindicator1 libindicator7 gconf-service libasound2 \
+RUN apt-get install -yqq unzip libxss1 libappindicator3-1 libindicator7 gconf-service libasound2 \
   libgconf-2-4 libnspr4 libnss3 libpango1.0-0 libxtst6 fonts-liberation xdg-utils \
   libgtk-3-0 lsb-release
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

@@ -16,7 +16,7 @@ APPS_DIR = ROOT_DIR.path('{{ cookiecutter.project_slug }}')
 env = environ.Env()
 
 # .env file, should load only in development environment
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=True)
 
 if READ_DOT_ENV_FILE:
     # Operating System Environment variables have precedence over variables defined in the .env file,
@@ -46,12 +46,13 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'allauth',
-    'allauth.account', {% if cookiecutter.use_djangoq == 'y' %}
+    'allauth.account',{% if cookiecutter.use_djangoq == 'y' %}
     'django_q',{% endif %}{% if cookiecutter.use_drf == 'y' %}
     'rest_framework',{% endif %}{% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
     'rest_framework.authtoken',
     'rest_auth',{% endif %}{% if cookiecutter.use_graphql == 'y' %}
     'graphene_django',{% endif %}
+    'webpack_loader',
 ]
 
 # Apps specific for this project go here.
@@ -299,6 +300,16 @@ Q_CLUSTER = {
 
 # Location of root django.contrib.admin URL, use {% raw %}{% url 'admin:index' %}{% endraw %}
 ADMIN_URL = r'^admin/'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'build/',  # must end with slash
+        'STATS_FILE': str(ROOT_DIR.path('webpack-stats.json')),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
