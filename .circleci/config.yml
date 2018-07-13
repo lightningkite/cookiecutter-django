@@ -35,9 +35,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            pip install -r requirements.txt
-            pip install -r {{cookiecutter.project_slug}}/requirements/local.txt
-            pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
+            sudo pip install -r requirements.txt
+            sudo pip install -r {{cookiecutter.project_slug}}/requirements/local.txt
+            sudo pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
 
           # Save dependency cache
       - save_cache:
