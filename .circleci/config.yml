@@ -33,7 +33,6 @@ jobs:
             pytest
             rm -rf project_name
             cd {{cookiecutter.project_slug}} && ls && rm -rf node_modules/ && cd ..
-            cd ~/
-            yes "" | cookiecutter cookiecutter
+            yes "" | cookiecutter .
             cd project_name && npm install && npm run build && cd ..
             pytest project_name
