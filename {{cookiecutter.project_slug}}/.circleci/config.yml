@@ -5,18 +5,18 @@ jobs:
     docker:
       - image: circleci/python:3.6.1
         environment:
-        - POSTGRES_USER=pathwaze
+        - POSTGRES_USER={{cookiecutter.project_slug}}
         - USE_DOCKER=yes
-        - DATABASE_URL=postgres://pathwaze:pathwaze@postgres:5432/pathwaze
+        - DATABASE_URL=postgres://{{cookiecutter.project_slug}}:{{cookiecutter.project_slug}}@postgres:5432/{{cookiecutter.project_slug}}
         - REDIS_URL=redis://redis:6379
       - image: postgres
         name: postgres
         environment:
-        - POSTGRES_USER=pathwaze
+        - POSTGRES_USER={{cookiecutter.project_slug}}
       - image: redis
         name: redis
 
-    working_directory: ~/pathwaze
+    working_directory: ~/{{cookiecutter.project_slug}}
 
     steps:
       - checkout
@@ -46,9 +46,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements/test.txt
+            sudo pip install -r requirements/test.txt
 
       - run:
           name: Install Node dependencies
@@ -87,4 +85,4 @@ jobs:
 
       - run:
           name: Run tests
-          command: pytest --verbose pathwaze
+          command: pytest --verbose {{cookiecutter.project_slug}}
