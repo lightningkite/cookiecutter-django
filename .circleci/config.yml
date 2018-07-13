@@ -10,18 +10,6 @@ jobs:
     steps:
       - checkout
 
-      # Dependencies
-            #   This would typically go in either a build or a build-and-test job when using workflows
-            # Restore the dependency cache
-      - restore_cache:
-          keys:
-            # This branch if available
-            - v1-dep-{{ .Branch }}-
-            # Default branch if not
-            - v1-dep-master-
-            # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
-            - v1-dep-
-
       - run:
           name: install node
           command: |
@@ -39,20 +27,11 @@ jobs:
             sudo pip install -r {{cookiecutter.project_slug}}/requirements/local.txt
             sudo pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
 
-          # Save dependency cache
-      - save_cache:
-          key: v1-dep-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /root/.cache
-
       - run:
           name: Run tests
           command: |
             pytest
-            rm -rf project_name
             cd {{cookiecutter.project_slug}} && ls && rm -rf node_modules/ && cd ..
-            pwd
-            ls
-            yes "" | cookiecutter .
+            rm -rf project_name && yes "" | cookiecutter .
             cd project_name && npm install && npm run build && cd ..
             pytest project_name
