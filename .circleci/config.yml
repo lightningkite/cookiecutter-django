@@ -37,6 +37,18 @@ jobs:
             sudo pip install -r {{cookiecutter.project_slug}}/requirements/test.txt
 
       - run:
+          name: Install Chrome Dependencies
+          command: |
+            sudo apt-get install -qy fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 wget xdg-utils unzip
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+            sudo rm google-chrome.deb
+            sudo wget http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
+            sudo unzip chromedriver_linux64.zip
+            sudo cp chromedriver /usr/local/bin/chromedriver
+
+      - run:
           name: Run tests
           command: |
             pytest
