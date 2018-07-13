@@ -47,24 +47,10 @@ jobs:
 
       - run:
           name: Run tests
-          command: pytest
-
-      - run:
-          name: Remove project
-          command: rm -rf project_name
-
-      - run:
-          name: Check for and remove node_modules
-          command: cd {{cookiecutter.project_slug}} && ls && rm -rf node_modules/
-      
-      - run:
-          name: Generate project
-          command: yes "" | cookiecutter .
-
-      - run:
-          name: Build node dependencies
-          command: cd project_name && npm install && npm run build && cd ..
-      
-      - run:
-          name: Run project tests
-          command: pytest project_name
+          command: |
+            pytest
+            rm -rf project_name
+            cd {{cookiecutter.project_slug}} && ls && rm -rf node_modules/
+            yes "" | cookiecutter .
+            cd project_name && npm install && npm run build && cd ..
+            pytest project_name
