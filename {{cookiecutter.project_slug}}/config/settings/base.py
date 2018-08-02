@@ -46,6 +46,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'allauth',
+    'allauth.socialaccount',
     'allauth.account',{% if cookiecutter.use_djangoq == 'y' %}
     'django_q',{% endif %}{% if cookiecutter.use_drf == 'y' %}
     'rest_framework',{% endif %}{% if cookiecutter.use_drf_registration == 'y' and cookiecutter.use_drf =='y' %}
