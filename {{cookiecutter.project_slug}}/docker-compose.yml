@@ -25,6 +25,7 @@ services:
       - USE_DOCKER=yes
     volumes:
       - .:/app
+      - /dev/shm:/dev/shm
     ports:
       - "8000:8000"
     links:
