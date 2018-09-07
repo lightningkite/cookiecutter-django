@@ -5,14 +5,14 @@
 
 # WSGI Handler
 # ------------------------------------------------
-gevent==1.2.2
-gunicorn==19.7.1
+gevent==1.3.6
+gunicorn==19.9.0
 
 # Static and Media Storage
 # ------------------------------------------------
 
-boto==2.48.0
-django-storages-redux==1.3.3
+boto3==1.8.9
+django-storages==1.7.1
 
 # Email backends for Mailgun, Postmark, SendGrid and more
 # -------------------------------------------------------
@@ -21,7 +21,7 @@ django-anymail==3.0
 # {% if cookiecutter.use_sentry_for_error_reporting == "y" -%}
 # Raven is the Sentry client
 # --------------------------
-raven==6.3.0
+raven==6.9.0
 # {%- endif %}
 
-Collectfast==0.5.2
+Collectfast==0.6.2
