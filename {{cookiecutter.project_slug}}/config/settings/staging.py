@@ -8,8 +8,6 @@ Production Configurations
 - Use sentry for error logging
 {% endif %}
 """
-
-from boto.s3.connection import OrdinaryCallingFormat
 {% if cookiecutter.use_sentry_for_error_reporting == 'y' %}
 import logging
 {% endif %}
@@ -47,15 +45,15 @@ MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 # set this to 60 seconds and then to 518400 when you can prove it works
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
-    'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True)
+    'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS')
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
-    'DJANGO_SECURE_CONTENT_TYPE_NOSNIFF', default=True)
+    'DJANGO_SECURE_CONTENT_TYPE_NOSNIFF')
 SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT', default=True)
-CSRF_COOKIE_SECURE = env('DJANGO_CSRF_COOKIE_SECURE')
-CSRF_COOKIE_HTTPONLY = env('DJANGO_CSRF_COOKIE_HTTPONLY')
+SESSION_COOKIE_SECURE = env.bool('DJANGO_SESSION_COOKIE_SECURE')
+SESSION_COOKIE_HTTPONLY = env.bool('DJANGO_SESSION_COOKIE_HTTPONLY')
+SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT')
+CSRF_COOKIE_SECURE = env.bool('DJANGO_CSRF_COOKIE_SECURE')
+CSRF_COOKIE_HTTPONLY = env.bool('DJANGO_CSRF_COOKIE_HTTPONLY')
 X_FRAME_OPTIONS = 'DENY'
 
 # SITE CONFIGURATION
@@ -78,9 +76,8 @@ INSTALLED_APPS += ['storages', ]
 AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
-AWS_AUTO_CREATE_BUCKET = False
+AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = False
-AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 
 # AWS cache settings, don't change unless you know what you're doing:
 AWS_EXPIRY = 60 * 60 * 24 * 7
@@ -148,9 +145,9 @@ DATABASES = {
     }
 }
 
-#CACHING
+# CACHING
 # ------------------------------------------------------------------------------
-REDIS_LOCATION = '{0}/{1}'.format(env('REDIS_URL'), 0)
+REDIS_LOCATION = env('DJANGO_REDIS_URL')
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
