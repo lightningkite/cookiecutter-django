@@ -12,7 +12,7 @@ django==2.0.7
 django-environ==0.4.4
 
 # Images
-Pillow==4.3.0
+Pillow==5.4.1
 
 # Password storage
 argon2-cffi==16.3.0
