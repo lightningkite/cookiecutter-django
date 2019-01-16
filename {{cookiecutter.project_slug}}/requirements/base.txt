@@ -37,7 +37,7 @@ django-q==0.9.4
 # {% endif %}
 # {% if cookiecutter.use_drf == "y" %}
 # Django rest framework
-djangorestframework==3.7.1
+djangorestframework==3.9.1
 # {% endif %}
 # {% if cookiecutter.use_drf_registration == "y" and cookiecutter.use_drf == 'y'%}
 django-rest-auth==0.9.2
