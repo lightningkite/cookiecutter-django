@@ -22,7 +22,7 @@ argon2-cffi==16.3.0
 django-allauth==0.34.0
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.3.2
+psycopg2==2.7.7
 
 # Time zones support
 pytz==2017.3
