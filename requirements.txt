@@ -6,7 +6,7 @@ binaryornot==0.4.4
 # Testing
 pytest==3.6.3
 pep8==1.7.0
-pyflakes==1.6.0
+pyflakes==2.1.1
 tox==2.9.1
 pytest-cookies==0.2.0
 
