@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.1
+      - image: 722c/circle-ci-ubuntu-python-3
         environment:
         - POSTGRES_USER={{cookiecutter.project_slug}}
         - USE_DOCKER=yes
@@ -34,19 +34,9 @@ jobs:
             - v1-dep-
 
       - run:
-          name: install node
-          command: |
-            sudo apt-get update -y
-            sudo apt-get upgrade -y
-            curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
-            sudo bash nodesource_setup.sh
-            sudo apt-get install nodejs
-            sudo apt-get install build-essential
-
-      - run:
           name: install dependencies
           command: |
-            sudo pip install -r requirements/test.txt
+            sudo pip3 install -r requirements/test.txt
 
       - run:
           name: Install Node dependencies
@@ -54,15 +44,17 @@ jobs:
 
       - run:
           name: Install Chrome Dependencies
-          command: sudo apt-get install -qy fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 wget xdg-utils unzip
-
-      - run: curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - run: sudo dpkg -i google-chrome.deb
-      - run: sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
-      - run: sudo rm google-chrome.deb
-      - run: sudo wget http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-      - run: sudo unzip chromedriver_linux64.zip
-      - run: sudo cp chromedriver /usr/local/bin/chromedriver
+          command: |
+            apt-get update -y
+            apt-get upgrade -y
+            apt-get install -qy fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 wget xdg-utils unzip
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dpkg -i google-chrome.deb
+            sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
+            wget http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            cp chromedriver /usr/local/bin/chromedriver
 
           # Save dependency cache
       - save_cache:
